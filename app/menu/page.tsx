@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { 
   Store, LogOut, UtensilsCrossed, ListOrdered, QrCode, 
   Plus, Trash2, Eye, EyeOff, Copy, Download, ChevronDown, CheckCircle2, Pencil, X,
-  BellRing, Radio, Clock, AlertCircle, Sparkles
+  BellRing, Radio, Clock, AlertCircle, Sparkles, ChefHat, Flame, ChevronRight
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -69,6 +69,7 @@ export default function AdminDashboard() {
   // Orders State & Live Tracking
   const [orders, setOrders] = useState<Order[]>([])
   const [orderFilter, setOrderFilter] = useState<'all' | 'pending' | 'preparing' | 'completed'>('all')
+  const [selectedOrderModal, setSelectedOrderModal] = useState<Order | null>(null)
   const [toasts, setToasts] = useState<AppToast[]>([])
   const previousOrderIdsRef = useRef<Set<string>>(new Set())
   const isFirstOrderFetch = useRef(true)
@@ -412,8 +413,8 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-obsidian-950 flex items-center justify-center">
-        <div className="w-10 h-10 border-4 border-gold-500 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-yellow-dots flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-gold-400 border-t-transparent rounded-full animate-spin shadow-lg shadow-gold-500/30" />
       </div>
     )
   }
@@ -421,21 +422,21 @@ export default function AdminDashboard() {
   const pendingCount = orders.filter(o => o.status === 'pending').length
 
   return (
-    <div className={cn("min-h-screen bg-luxury-pattern text-[#FCFAF6] font-sans flex flex-col pb-12", activeTab !== 'qr' && "pb-24")}>
-      <header className="bg-obsidian-900/90 backdrop-blur-md border-b border-gold-500/20 sticky top-0 z-30 shadow-md shadow-gold-500/5">
+    <div className={cn("min-h-screen bg-yellow-dots text-white font-sans flex flex-col pb-12", activeTab !== 'qr' && "pb-24")}>
+      <header className="bg-obsidian-900/95 backdrop-blur-md border-b border-gold-500/30 sticky top-0 z-30 shadow-xl">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-obsidian-950 border border-gold-500/25 text-gold-500 flex items-center justify-center shadow-lg">
-              <Store className="w-5 h-5" />
+            <div className="w-11 h-11 rounded-2xl bg-gold-gradient text-obsidian-950 flex items-center justify-center shadow-lg">
+              <Store className="w-5 h-5 text-obsidian-950" />
             </div>
             <div>
-              <h1 className="font-sans font-bold text-xl text-white tracking-tight">{hotel?.name || 'Dashboard'}</h1>
-              <p className="text-[10px] font-bold text-gold-500/80 uppercase tracking-widest">Premium Partner Suite</p>
+              <h1 className="font-sans font-extrabold text-xl text-white tracking-tight">{hotel?.name || 'Dashboard'}</h1>
+              <p className="text-[10px] font-black text-gold-300 uppercase tracking-widest">Premium Partner Suite</p>
             </div>
           </div>
           <button 
             onClick={handleLogout} 
-            className="flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-red-400 hover:bg-red-950/30 border border-transparent hover:border-red-900/40 px-4 py-2.5 rounded-xl transition-all duration-300 cursor-pointer"
+            className="flex items-center gap-2 text-xs font-bold text-yellow-100/80 hover:text-red-400 hover:bg-red-950/40 border border-transparent hover:border-red-500/30 px-4 py-2.5 rounded-xl transition-all duration-300 cursor-pointer"
           >
             <span className="hidden sm:inline">Sign Out</span>
             <LogOut className="w-4 h-4" />
@@ -448,8 +449,8 @@ export default function AdminDashboard() {
             className={cn(
               "flex items-center gap-2 px-4 py-3.5 text-xs font-bold border-b-2 whitespace-nowrap transition-all duration-300 cursor-pointer",
               activeTab === 'menu' 
-                ? "border-gold-500 text-gold-500 font-extrabold" 
-                : "border-transparent text-gray-450 hover:text-gold-200"
+                ? "border-gold-300 text-gold-300 font-black" 
+                : "border-transparent text-yellow-100/70 hover:text-white"
             )}
           >
             <UtensilsCrossed className="w-4 h-4" />
@@ -460,14 +461,14 @@ export default function AdminDashboard() {
             className={cn(
               "flex items-center gap-2 px-4 py-3.5 text-xs font-bold border-b-2 whitespace-nowrap transition-all duration-300 cursor-pointer relative",
               activeTab === 'orders' 
-                ? "border-gold-500 text-gold-500 font-extrabold" 
-                : "border-transparent text-gray-450 hover:text-gold-200"
+                ? "border-gold-300 text-gold-300 font-black" 
+                : "border-transparent text-yellow-100/70 hover:text-white"
             )}
           >
             <ListOrdered className="w-4 h-4" />
             Live Guest Orders
             {pendingCount > 0 && (
-              <span className="inline-flex items-center justify-center bg-gold-500 text-obsidian-950 font-extrabold text-[10px] w-5 h-5 rounded-full shadow-sm animate-pulse ml-1">
+              <span className="inline-flex items-center justify-center bg-gold-gradient text-obsidian-950 font-black text-[10px] w-5 h-5 rounded-full shadow-sm animate-pulse ml-1">
                 {pendingCount}
               </span>
             )}
@@ -477,8 +478,8 @@ export default function AdminDashboard() {
             className={cn(
               "flex items-center gap-2 px-4 py-3.5 text-xs font-bold border-b-2 whitespace-nowrap transition-all duration-300 cursor-pointer",
               activeTab === 'qr' 
-                ? "border-gold-500 text-gold-500 font-extrabold" 
-                : "border-transparent text-gray-450 hover:text-gold-200"
+                ? "border-gold-300 text-gold-300 font-black" 
+                : "border-transparent text-yellow-100/70 hover:text-white"
             )}
           >
             <QrCode className="w-4 h-4" />
@@ -491,17 +492,17 @@ export default function AdminDashboard() {
         
         {activeTab === 'menu' && (
           <div className="space-y-6 animate-fade-in-up">
-            <div className="bg-obsidian-900 border border-gold-500/20 rounded-3xl shadow-xl shadow-gold-500/5 overflow-hidden">
-              <div className="px-6 py-4.5 border-b border-gold-500/15 bg-obsidian-950/40 flex justify-between items-center flex-wrap gap-3">
+            <div className="bg-obsidian-900/90 border border-gold-500/30 rounded-3xl shadow-xl overflow-hidden backdrop-blur-md">
+              <div className="px-6 py-4.5 border-b border-gold-500/20 bg-obsidian-950/60 flex justify-between items-center flex-wrap gap-3">
                 <div>
-                  <h2 className="font-sans font-bold text-white tracking-tight text-base sm:text-lg">Current Cuisine Offerings</h2>
-                  <p className="text-[10px] font-medium text-gray-400 mt-0.5">Manage details, pricing, descriptions, and catalog availability</p>
+                  <h2 className="font-sans font-extrabold text-white tracking-tight text-base sm:text-lg">Current Cuisine Offerings</h2>
+                  <p className="text-[10px] font-semibold text-yellow-100/80 mt-0.5">Manage details, pricing, descriptions, and catalog availability</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="bg-gold-500/10 text-gold-455 text-[10px] font-bold px-3.5 py-1.5 rounded-full border border-gold-500/20">{menuItems.length} Plates</span>
+                  <span className="bg-gold-500/15 text-gold-300 text-[10px] font-bold px-3.5 py-1.5 rounded-full border border-gold-500/30">{menuItems.length} Plates</span>
                   <button
                     onClick={handleOpenAddModal}
-                    className="bg-gold-500 hover:bg-gold-600 text-obsidian-950 text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-md active:scale-95 cursor-pointer border border-gold-650 flex items-center gap-1.5"
+                    className="btn-gold-foil text-xs font-black px-4 py-2.5 rounded-xl transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-1.5"
                   >
                     <Plus className="w-3.5 h-3.5 text-obsidian-950" />
                     Add Cuisine Item
@@ -511,7 +512,7 @@ export default function AdminDashboard() {
               
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-obsidian-950 border-b border-gold-500/15 text-gray-400 uppercase text-[10px] font-bold tracking-widest">
+                  <thead className="bg-obsidian-950 border-b border-gold-500/20 text-gold-300 uppercase text-[10px] font-extrabold tracking-widest">
                     <tr>
                       <th className="px-6 py-4">Item & Ingredients</th>
                       <th className="px-6 py-4">Category</th>
@@ -587,26 +588,30 @@ export default function AdminDashboard() {
 
         {activeTab === 'orders' && (
           <div className="space-y-6 animate-fade-in-up">
-            <div className="bg-obsidian-900 border border-gold-500/20 rounded-3xl p-4 sm:p-5 shadow-xl shadow-gold-500/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-              <div className="flex items-center gap-2.5">
-                <div className="relative">
-                  <Radio className="w-4 h-4 text-green-400 animate-pulse" />
+            {/* Header Feed Controller */}
+            <div className="bg-obsidian-900 border border-gold-500/25 rounded-3xl p-4 sm:p-5 shadow-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <div className="flex items-center gap-3">
+                <div className="relative flex items-center justify-center">
+                  <Radio className="w-5 h-5 text-green-400 animate-pulse" />
                   <span className="absolute inset-0 rounded-full bg-green-400/40 animate-ping pointer-events-none" />
                 </div>
                 <div>
-                  <h3 className="font-sans font-bold text-white text-sm">Live Kitchen Dispatch Feed</h3>
-                  <p className="text-[10px] text-gray-400 font-medium">Auto-syncing every 5s • {orders.length} Total Requests</p>
+                  <h3 className="font-sans font-extrabold text-white text-base tracking-tight flex items-center gap-2">
+                    Live Kitchen Dispatch Command
+                  </h3>
+                  <p className="text-xs text-champagne/80 font-medium">Auto-syncing live feed • {orders.length} Total Room Orders</p>
                 </div>
               </div>
 
-              <div className="flex gap-1.5 overflow-x-auto scrollbar-hide w-full sm:w-auto">
+              {/* Status Filter Chips */}
+              <div className="flex gap-2 overflow-x-auto scrollbar-hide w-full sm:w-auto p-1 bg-obsidian-950 rounded-2xl border border-gold-500/20">
                 <button
                   onClick={() => setOrderFilter('all')}
                   className={cn(
-                    "px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all border shrink-0 cursor-pointer",
+                    "px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition-all shrink-0 cursor-pointer",
                     orderFilter === 'all'
-                      ? "bg-gold-500 text-obsidian-950 border-gold-500"
-                      : "bg-obsidian-950 text-gray-400 border-gold-500/10 hover:border-gold-500/30"
+                      ? "btn-gold-foil shadow-md"
+                      : "text-champagne hover:text-white hover:bg-obsidian-900"
                   )}
                 >
                   All ({orders.length})
@@ -614,148 +619,207 @@ export default function AdminDashboard() {
                 <button
                   onClick={() => setOrderFilter('pending')}
                   className={cn(
-                    "px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all border shrink-0 cursor-pointer flex items-center gap-1.5",
+                    "px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition-all shrink-0 cursor-pointer flex items-center gap-1.5",
                     orderFilter === 'pending'
-                      ? "bg-amber-500 text-obsidian-950 border-amber-500"
-                      : "bg-obsidian-950 text-amber-400/80 border-amber-900/30 hover:border-amber-500/40"
+                      ? "bg-amber-500 text-obsidian-950 font-black shadow-md"
+                      : "text-amber-400 hover:bg-obsidian-900"
                   )}
                 >
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                   Pending ({orders.filter(o => o.status === 'pending').length})
                 </button>
                 <button
                   onClick={() => setOrderFilter('preparing')}
                   className={cn(
-                    "px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all border shrink-0 cursor-pointer flex items-center gap-1.5",
+                    "px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition-all shrink-0 cursor-pointer flex items-center gap-1.5",
                     orderFilter === 'preparing'
-                      ? "bg-blue-500 text-obsidian-950 border-blue-500"
-                      : "bg-obsidian-950 text-blue-400/80 border-blue-900/30 hover:border-blue-500/40"
+                      ? "bg-blue-500 text-obsidian-950 font-black shadow-md"
+                      : "text-blue-400 hover:bg-obsidian-900"
                   )}
                 >
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
                   Preparing ({orders.filter(o => o.status === 'preparing').length})
                 </button>
                 <button
                   onClick={() => setOrderFilter('completed')}
                   className={cn(
-                    "px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all border shrink-0 cursor-pointer flex items-center gap-1.5",
+                    "px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition-all shrink-0 cursor-pointer flex items-center gap-1.5",
                     orderFilter === 'completed'
-                      ? "bg-green-500 text-obsidian-950 border-green-500"
-                      : "bg-obsidian-950 text-green-400/80 border-green-900/30 hover:border-green-500/40"
+                      ? "bg-green-500 text-obsidian-950 font-black shadow-md"
+                      : "text-green-400 hover:bg-obsidian-900"
                   )}
                 >
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
                   Served ({orders.filter(o => o.status === 'completed').length})
                 </button>
               </div>
             </div>
 
-            <div className="space-y-4">
+            {/* LUXURY ORDERS CARD GRID */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {orders
                 .filter(order => orderFilter === 'all' || order.status === orderFilter)
                 .map(order => {
                   const orderTotal = (order.items || []).reduce((sum, i) => sum + i.price * i.quantity, 0)
+                  const totalPlates = (order.items || []).reduce((sum, i) => sum + i.quantity, 0)
+
                   return (
                     <div 
                       key={order.id} 
-                      className="bg-obsidian-900 border border-gold-500/20 rounded-3xl p-5 md:p-6 shadow-md hover:shadow-xl hover:border-gold-500/45 transition-all duration-300 flex flex-col md:flex-row gap-6 justify-between items-start md:items-center"
+                      className="bg-obsidian-900/90 border border-gold-500/30 rounded-3xl p-5 shadow-xl hover:border-gold-300 hover:shadow-2xl transition-all duration-300 group cursor-pointer relative flex flex-col justify-between backdrop-blur-md"
+                      onClick={() => setSelectedOrderModal(order)}
                     >
-                      <div className="flex-1 w-full">
-                        <div className="flex items-center justify-between md:justify-start gap-3 mb-3 flex-wrap">
-                          <span className="bg-gold-500/20 text-gold-300 px-3.5 py-1.5 rounded-xl font-sans font-bold border border-gold-500/30 text-sm flex items-center gap-1.5">
-                            Suite {order.room_no}
-                          </span>
-                          <span className="text-[10px] font-bold text-gray-400 flex items-center gap-1">
-                            <Clock className="w-3 h-3 text-gold-500/70" />
-                            {getRelativeTime(order.created_at)}
-                          </span>
+                      {/* Card Top: Suite Badge & Status */}
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-3">
+                          <div className="flex items-center gap-2">
+                            <span className="btn-gold-foil px-3 py-1 rounded-xl text-xs font-black shadow-md flex items-center gap-1.5">
+                              <Store className="w-3.5 h-3.5 text-obsidian-950" />
+                              Suite {order.room_no}
+                            </span>
+                            <span className="text-[10px] font-mono text-gold-300/70 font-bold">
+                              #{order.id.slice(0, 6)}
+                            </span>
+                          </div>
+
                           <span className={cn(
-                            "text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-lg border",
-                            order.status === 'pending' ? "bg-amber-950/40 text-amber-400 border-amber-900/50" :
-                            order.status === 'preparing' ? "bg-blue-950/40 text-blue-400 border-blue-900/50" :
-                            order.status === 'completed' ? "bg-green-950/40 text-green-400 border-green-900/50" :
+                            "text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full border flex items-center gap-1.5 shadow-sm",
+                            order.status === 'pending' ? "bg-amber-950/70 text-amber-400 border-amber-500/40" :
+                            order.status === 'preparing' ? "bg-blue-950/70 text-blue-400 border-blue-500/40" :
+                            order.status === 'completed' ? "bg-green-950/70 text-green-400 border-green-500/40" :
                             "bg-obsidian-950 text-gray-400 border-gold-500/20"
                           )}>
-                            {order.status === 'pending' ? 'Pending Receipt' : order.status === 'preparing' ? 'In Preparation' : order.status === 'completed' ? 'Dispatched / Served' : order.status}
+                            <span className={cn(
+                              "w-1.5 h-1.5 rounded-full animate-pulse",
+                              order.status === 'pending' ? "bg-amber-400" :
+                              order.status === 'preparing' ? "bg-blue-400" :
+                              order.status === 'completed' ? "bg-green-400" : "bg-gray-400"
+                            )} />
+                            {order.status === 'pending' ? 'Pending' : order.status === 'preparing' ? 'Preparing' : order.status === 'completed' ? 'Served' : order.status}
                           </span>
                         </div>
-                        
-                        <div className="space-y-2.5 bg-gold-500/5 border border-gold-500/20 rounded-2xl p-4 shadow-inner">
-                          {(order.items || []).map((item, idx) => (
-                            <div key={idx} className="flex justify-between items-center text-sm">
-                              <div className="flex items-center gap-2.5">
-                                 <span className="bg-gold-500/15 border border-gold-500/30 font-bold font-mono text-xs w-6.5 h-6.5 flex items-center justify-center rounded-lg text-gold-400 shadow-sm">
-                                   {item.quantity}
-                                 </span>
-                                 <span className="font-semibold text-white">{item.name}</span>
-                              </div>
-                              <span className="font-mono text-gold-400 font-semibold text-xs">
-                                ₹{item.price * item.quantity}
+
+                        {/* Timestamp & Item Count */}
+                        <div className="flex justify-between items-center text-xs text-champagne/80 font-medium mb-3">
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5 text-gold-300" />
+                            {getRelativeTime(order.created_at)}
+                          </span>
+                          <span className="font-bold text-white bg-obsidian-950 px-2.5 py-1 rounded-lg border border-gold-500/20">
+                            {totalPlates} {totalPlates === 1 ? 'Plate' : 'Plates'} • ₹{orderTotal}
+                          </span>
+                        </div>
+
+                        {/* Items Quick Snippet */}
+                        <div className="space-y-1.5 bg-obsidian-950/90 border border-gold-500/20 rounded-2xl p-3 shadow-inner">
+                          {(order.items || []).slice(0, 2).map((item, idx) => (
+                            <div key={idx} className="flex justify-between items-center text-xs">
+                              <span className="text-white font-bold truncate max-w-[170px]">
+                                <span className="text-gold-300 font-mono mr-1.5">{item.quantity}x</span>
+                                {item.name}
                               </span>
+                              <span className="text-gold-300 font-mono font-bold text-[11px]">₹{item.price * item.quantity}</span>
                             </div>
                           ))}
-                          <div className="pt-2.5 border-t border-gold-500/15 flex justify-between items-center text-xs">
-                            <span className="text-gray-350 font-bold">Valuation Total</span>
-                            <span className="font-mono font-bold text-gold-400 text-sm">₹{orderTotal}</span>
-                          </div>
+                          {(order.items || []).length > 2 && (
+                            <p className="text-[10px] text-champagne/70 font-semibold pt-1 border-t border-gold-500/10">
+                              +{(order.items || []).length - 2} more items in order...
+                            </p>
+                          )}
                         </div>
                       </div>
-                      
-                      <div className="flex flex-col sm:flex-row md:flex-col items-stretch md:items-end justify-between md:justify-end gap-3 w-full md:w-auto pt-4 md:pt-0 border-t md:border-none border-gold-500/10">
-                        <div className="flex flex-col md:items-end w-full">
-                          <span className="text-[9px] font-bold uppercase tracking-widest text-gold-500/80 mb-1.5">Kitchen Command</span>
-                          <div className="relative w-full md:w-48">
-                            <select 
-                              value={order.status}
-                              onChange={(e) => handleUpdateOrderStatus(order.id, e.target.value)}
-                              className={cn(
-                                "w-full appearance-none px-4 py-2.5 rounded-2xl text-xs font-bold border outline-none cursor-pointer transition-all shadow-sm focus:ring-2 focus:ring-gold-500/10",
-                                order.status === 'pending' ? 'bg-amber-950/30 text-amber-400 border-amber-900/30 hover:bg-amber-900/20' :
-                                order.status === 'preparing' ? 'bg-blue-950/30 text-blue-400 border-blue-900/30 hover:bg-blue-900/20' :
-                                order.status === 'completed' ? 'bg-green-950/30 text-green-400 border-green-900/30 hover:bg-green-900/20' :
-                                'bg-obsidian-950 text-gray-400 border-gold-500/10 hover:bg-obsidian-900'
-                              )}
-                            >
-                              <option value="pending">Pending Receipt</option>
-                              <option value="preparing">In Preparation</option>
-                              <option value="completed">Dispatched / Served</option>
-                              <option value="cancelled">Cancelled</option>
-                            </select>
-                            <ChevronDown className={cn(
-                              "absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none",
-                              order.status === 'pending' ? 'text-amber-550' :
-                              order.status === 'preparing' ? 'text-blue-400' :
-                              order.status === 'completed' ? 'text-green-500' :
-                              'text-gray-500'
-                            )} />
+
+                      {/* DESKTOP HOVER EXPANDED DETAILS POPOVER */}
+                      <div className="hidden md:group-hover:flex flex-col absolute inset-0 bg-obsidian-950/98 backdrop-blur-md border-2 border-gold-400 rounded-3xl p-4 z-20 transition-all duration-300 shadow-2xl justify-between animate-fade-in-up">
+                        <div>
+                          <div className="flex justify-between items-center pb-2 border-b border-gold-500/20 mb-3">
+                            <span className="font-extrabold text-sm text-white flex items-center gap-1.5">
+                              <Store className="w-4 h-4 text-gold-300" />
+                              Suite {order.room_no} Full Order
+                            </span>
+                            <span className="text-[10px] font-mono text-gold-300">#{order.id.slice(0, 6)}</span>
+                          </div>
+                          <div className="space-y-2 max-h-[140px] overflow-y-auto pr-1">
+                            {(order.items || []).map((item, idx) => (
+                              <div key={idx} className="flex justify-between items-center text-xs">
+                                <span className="text-white font-bold">
+                                  <span className="text-gold-300 font-mono mr-1.5">{item.quantity}x</span>
+                                  {item.name}
+                                </span>
+                                <span className="text-gold-300 font-mono font-bold">₹{item.price * item.quantity}</span>
+                              </div>
+                            ))}
                           </div>
                         </div>
-                        {order.status === 'pending' && (
-                          <button
-                            onClick={() => handleUpdateOrderStatus(order.id, 'preparing')}
-                            className="bg-gold-500 hover:bg-gold-600 text-obsidian-950 font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-sm cursor-pointer border border-gold-650 flex items-center justify-center gap-1.5"
+
+                        <div className="pt-2 border-t border-gold-500/20 flex justify-between items-center">
+                          <div>
+                            <span className="text-[10px] text-champagne uppercase font-bold block">Total Valuation</span>
+                            <span className="text-gold-300 font-black text-sm">₹{orderTotal}</span>
+                          </div>
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              setSelectedOrderModal(order)
+                            }}
+                            className="btn-gold-foil px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1 cursor-pointer shadow-md"
                           >
-                            Start Preparing
+                            <span>Open Controls</span>
+                            <ChevronRight className="w-3.5 h-3.5" />
                           </button>
-                        )}
-                        {order.status === 'preparing' && (
-                          <button
-                            onClick={() => handleUpdateOrderStatus(order.id, 'completed')}
-                            className="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-sm cursor-pointer border border-green-500 flex items-center justify-center gap-1.5"
-                          >
-                            Mark Dispatched
-                          </button>
-                        )}
+                        </div>
+                      </div>
+
+                      {/* CARD FOOTER: INNOVATIVE KITCHEN COMMAND CONTROL */}
+                      <div className="pt-4 mt-4 border-t border-gold-500/15 flex items-center justify-between gap-2" onClick={(e) => e.stopPropagation()}>
+                        <div className="flex items-center gap-1">
+                          {order.status === 'pending' && (
+                            <button
+                              onClick={() => handleUpdateOrderStatus(order.id, 'preparing')}
+                              className="btn-gold-foil text-obsidian-950 font-black px-3.5 py-1.5 rounded-xl text-xs flex items-center gap-1.5 shadow-md hover:scale-[1.02] cursor-pointer"
+                            >
+                              <Flame className="w-3.5 h-3.5 text-obsidian-950 fill-obsidian-950" />
+                              <span>Start Cooking</span>
+                            </button>
+                          )}
+                          {order.status === 'preparing' && (
+                            <button
+                              onClick={() => handleUpdateOrderStatus(order.id, 'completed')}
+                              className="bg-green-600 hover:bg-green-500 text-white font-black px-3.5 py-1.5 rounded-xl text-xs flex items-center gap-1.5 shadow-md hover:scale-[1.02] cursor-pointer border border-green-400/50"
+                            >
+                              <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+                              <span>Mark Served</span>
+                            </button>
+                          )}
+                          {order.status === 'completed' && (
+                            <span className="bg-green-950/70 border border-green-500/40 text-green-400 text-[10px] font-extrabold px-3 py-1 rounded-xl flex items-center gap-1">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-green-400" />
+                              Served & Done
+                            </span>
+                          )}
+                        </div>
+
+                        <button
+                          onClick={() => setSelectedOrderModal(order)}
+                          className="p-2 bg-obsidian-950 hover:bg-obsidian-800 text-gold-300 border border-gold-500/30 rounded-xl transition-colors cursor-pointer text-xs font-bold flex items-center gap-1"
+                          title="View Full Order"
+                        >
+                          <Eye className="w-3.5 h-3.5 text-gold-300" />
+                          <span className="text-[11px] font-bold">Details</span>
+                        </button>
                       </div>
                     </div>
                   )
                 })}
-              
+
               {orders.filter(order => orderFilter === 'all' || order.status === orderFilter).length === 0 && (
-                <div className="text-center py-20 bg-obsidian-900 border border-gold-500/20 rounded-3xl shadow-xl shadow-gold-500/5">
-                  <div className="w-16 h-16 bg-obsidian-950 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold-500/10">
-                    <ListOrdered className="w-7 h-7 text-gold-500/60" />
+                <div className="col-span-full text-center py-20 bg-obsidian-900 border border-gold-500/20 rounded-3xl shadow-xl">
+                  <div className="w-16 h-16 bg-obsidian-950 rounded-full flex items-center justify-center mx-auto mb-4 border border-gold-500/20">
+                    <ListOrdered className="w-7 h-7 text-gold-300" />
                   </div>
                   <h3 className="text-base font-sans font-bold text-white mb-1">No Orders Match Filter</h3>
-                  <p className="text-xs text-gray-450 max-w-sm mx-auto leading-relaxed">
-                    There are no orders matching the "{orderFilter}" status filter right now.
+                  <p className="text-xs text-champagne/80 max-w-sm mx-auto leading-relaxed">
+                    There are no live guest orders matching the "{orderFilter}" filter right now.
                   </p>
                 </div>
               )}
@@ -782,9 +846,7 @@ export default function AdminDashboard() {
               </div>
             </div>
             <h2 className="text-xl font-sans font-bold text-white mb-2 text-center tracking-tight">Your Menu QR Placement Code</h2>
-            <p className="text-gray-400 max-w-md text-center mb-8 text-xs font-medium leading-relaxed px-4">
-              Deploy this code to guest suites or dining tables. Scanning redirects users instantly to your premium catalog menu page.
-            </p>
+           
             <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs sm:max-w-none justify-center px-4">
               <a 
                 href={qrCodeUrl}
@@ -884,6 +946,161 @@ export default function AdminDashboard() {
           </div>
         ))}
       </div>
+
+      {/* MOBILE & DETAILED ORDER FEATURE MODAL SHEET */}
+      {selectedOrderModal && (
+        <div 
+          className="fixed inset-0 z-[220] flex justify-center items-end sm:items-center p-0 sm:p-4 bg-obsidian-950/85 backdrop-blur-md animate-fade-in"
+          onClick={() => setSelectedOrderModal(null)}
+        >
+          <div 
+            className="bg-obsidian-900 border-t sm:border border-gold-500/35 rounded-t-[32px] sm:rounded-3xl p-6 sm:p-8 w-full max-w-lg shadow-2xl relative max-h-[85vh] sm:max-h-[90vh] overflow-y-auto animate-fade-in-up"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="flex justify-between items-start border-b border-gold-500/25 pb-4 mb-5">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="btn-gold-foil px-3.5 py-1 rounded-xl text-xs font-black shadow-md flex items-center gap-1.5">
+                    <Store className="w-4 h-4 text-obsidian-950" />
+                    Suite {selectedOrderModal.room_no}
+                  </span>
+                  <span className="text-xs font-mono text-gold-300 font-bold">
+                    #{selectedOrderModal.id.slice(0, 8)}
+                  </span>
+                </div>
+                <p className="text-xs text-champagne/80 mt-2 font-medium flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-gold-300" />
+                  Received {getRelativeTime(selectedOrderModal.created_at)}
+                </p>
+              </div>
+              <button
+                onClick={() => setSelectedOrderModal(null)}
+                className="p-2 bg-obsidian-950 hover:bg-obsidian-850 text-gold-300 border border-gold-500/30 rounded-full transition-colors cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Order Items Table */}
+            <div className="space-y-3 mb-6">
+              <span className="text-[10px] font-extrabold uppercase tracking-widest text-gold-300 block">
+                Dishes Requested
+              </span>
+              <div className="bg-obsidian-950/90 border border-gold-500/20 rounded-2xl p-4 divide-y divide-gold-500/10 space-y-3">
+                {(selectedOrderModal.items || []).map((item, idx) => (
+                  <div key={idx} className={cn("flex justify-between items-center text-sm pt-2", idx === 0 && "pt-0")}>
+                    <div className="flex items-center gap-3">
+                      <span className="w-7 h-7 bg-gold-500/20 border border-gold-500/30 rounded-xl text-gold-300 text-xs font-mono font-black flex items-center justify-center">
+                        {item.quantity}
+                      </span>
+                      <div>
+                        <p className="font-extrabold text-white text-sm">{item.name}</p>
+                        <p className="text-xs text-champagne/70 font-semibold">₹{item.price} each</p>
+                      </div>
+                    </div>
+                    <span className="font-mono font-black text-gold-300 text-sm">
+                      ₹{item.price * item.quantity}
+                    </span>
+                  </div>
+                ))}
+
+                <div className="pt-3 flex justify-between items-center border-t border-gold-500/20 text-sm">
+                  <span className="font-extrabold text-white">Grand Valuation Total</span>
+                  <span className="font-black text-gold-300 text-base">
+                    ₹{(selectedOrderModal.items || []).reduce((sum, i) => sum + i.price * i.quantity, 0)}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* INNOVATIVE KITCHEN STATUS STEPPER & CONTROL */}
+            <div className="space-y-3 pt-4 border-t border-gold-500/25">
+              <span className="text-[10px] font-extrabold uppercase tracking-widest text-gold-300 block">
+                Kitchen Command Dispatch Control
+              </span>
+
+              {/* Status Stepper Pills */}
+              <div className="grid grid-cols-3 gap-2 bg-obsidian-950 p-1.5 rounded-2xl border border-gold-500/30 text-center">
+                <button
+                  onClick={() => {
+                    handleUpdateOrderStatus(selectedOrderModal.id, 'pending')
+                    setSelectedOrderModal(prev => prev ? { ...prev, status: 'pending' } : null)
+                  }}
+                  className={cn(
+                    "py-2 rounded-xl text-xs font-black transition-all cursor-pointer",
+                    selectedOrderModal.status === 'pending' ? "bg-amber-500 text-obsidian-950 shadow-md" : "text-amber-400 hover:bg-obsidian-900"
+                  )}
+                >
+                  Pending
+                </button>
+
+                <button
+                  onClick={() => {
+                    handleUpdateOrderStatus(selectedOrderModal.id, 'preparing')
+                    setSelectedOrderModal(prev => prev ? { ...prev, status: 'preparing' } : null)
+                  }}
+                  className={cn(
+                    "py-2 rounded-xl text-xs font-black transition-all cursor-pointer",
+                    selectedOrderModal.status === 'preparing' ? "bg-blue-500 text-obsidian-950 shadow-md" : "text-blue-400 hover:bg-obsidian-900"
+                  )}
+                >
+                  Cooking
+                </button>
+
+                <button
+                  onClick={() => {
+                    handleUpdateOrderStatus(selectedOrderModal.id, 'completed')
+                    setSelectedOrderModal(prev => prev ? { ...prev, status: 'completed' } : null)
+                  }}
+                  className={cn(
+                    "py-2 rounded-xl text-xs font-black transition-all cursor-pointer",
+                    selectedOrderModal.status === 'completed' ? "bg-green-500 text-obsidian-950 shadow-md" : "text-green-400 hover:bg-obsidian-900"
+                  )}
+                >
+                  Served
+                </button>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-col gap-2.5">
+                {selectedOrderModal.status === 'pending' && (
+                  <button
+                    onClick={() => {
+                      handleUpdateOrderStatus(selectedOrderModal.id, 'preparing')
+                      setSelectedOrderModal(null)
+                    }}
+                    className="w-full btn-gold-foil py-3.5 rounded-2xl text-xs font-black flex items-center justify-center gap-2 shadow-xl cursor-pointer"
+                  >
+                    <Flame className="w-4 h-4 text-obsidian-950 fill-obsidian-950" />
+                    <span>Acknowledge & Start Cooking</span>
+                  </button>
+                )}
+
+                {selectedOrderModal.status === 'preparing' && (
+                  <button
+                    onClick={() => {
+                      handleUpdateOrderStatus(selectedOrderModal.id, 'completed')
+                      setSelectedOrderModal(null)
+                    }}
+                    className="w-full bg-green-600 hover:bg-green-500 text-white py-3.5 rounded-2xl text-xs font-black flex items-center justify-center gap-2 shadow-xl cursor-pointer border border-green-400/40"
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-white" />
+                    <span>Mark Dispatched & Served</span>
+                  </button>
+                )}
+
+                <button
+                  onClick={() => setSelectedOrderModal(null)}
+                  className="w-full bg-obsidian-950 hover:bg-obsidian-800 text-gold-300 border border-gold-500/30 py-3 rounded-2xl text-xs font-extrabold cursor-pointer"
+                >
+                  Close Detail Modal
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {isModalOpen && (
         <div className="fixed inset-0 z-[200] flex justify-center items-start sm:items-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto animate-fade-in animate-none">

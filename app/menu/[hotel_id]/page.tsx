@@ -315,24 +315,24 @@ export default function MenuPage({
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
-          className="w-12 h-12 border-3 border-gold-500 border-t-transparent rounded-full mb-4 shadow-lg shadow-gold-500/20"
+          className="w-12 h-12 border-3 border-gold-400 border-t-transparent rounded-full mb-4 shadow-lg shadow-gold-500/30"
         />
-        <p className="text-gold-200 text-sm font-semibold tracking-wide animate-pulse">Loading Guest Menu...</p>
+        <p className="text-gold-200 text-sm font-bold tracking-wide animate-pulse">Loading Guest Menu...</p>
       </main>
     )
   }
 
   if (error || !hotel) {
     return (
-      <main className="min-h-screen bg-obsidian-950 flex flex-col items-center justify-center p-6 text-center text-white">
-        <div className="p-5 bg-red-950/40 border border-red-500/30 text-red-400 rounded-full mb-4 shadow-xl">
+      <main className="min-h-screen bg-yellow-dots flex flex-col items-center justify-center p-6 text-center text-white">
+        <div className="p-5 bg-red-950/50 border border-red-500/40 text-red-400 rounded-full mb-4 shadow-xl">
           <UtensilsCrossed className="w-8 h-8" />
         </div>
         <h1 className="text-2xl font-bold text-white mb-2">Menu Unavailable</h1>
-        <p className="text-gray-400 text-sm max-w-sm mb-8">{error || "We couldn't load the menu for this hotel."}</p>
+        <p className="text-gray-300 text-sm max-w-sm mb-8">{error || "We couldn't load the menu for this hotel."}</p>
         <Link
           href="/"
-          className="bg-gold-500 text-obsidian-950 hover:bg-gold-600 font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-lg shadow-gold-500/20"
+          className="btn-gold-foil font-extrabold px-6 py-3 rounded-xl text-sm transition-all shadow-lg active:scale-95"
         >
           Return to Home
         </Link>
@@ -341,36 +341,36 @@ export default function MenuPage({
   }
 
   return (
-    <main className="min-h-screen bg-obsidian-950 text-cream-50 font-sans pb-32">
+    <main className="min-h-screen bg-yellow-dots text-white font-sans pb-32">
       {/* 
         PREMIUM RESPONSIVE TOPBAR HEADER (No food background image)
-        Modern dark luxury layout with ambient glow and clean typography 
+        Modern dark luxury layout with high-visibility metallic gold gradient and dot background 
       */}
-      <header className="relative bg-gradient-to-b from-obsidian-900 via-obsidian-950 to-obsidian-950 border-b border-gold-500/15 pt-8 pb-6 px-4 sm:px-6 overflow-hidden">
-        {/* Subtle Ambient Radial Lighting */}
-        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold-500/10 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 blur-[90px] rounded-full pointer-events-none" />
+      <header className="relative bg-gradient-to-b from-obsidian-900/95 via-obsidian-950 to-obsidian-950 border-b border-gold-500/30 pt-8 pb-6 px-4 sm:px-6 overflow-hidden shadow-xl">
+        {/* Ambient Lighting */}
+        <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold-500/15 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-400/10 blur-[90px] rounded-full pointer-events-none" />
 
         <div className="max-w-2xl mx-auto relative z-10 space-y-5">
           {/* Hotel Info Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gold-500/10 pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gold-500/20 pb-4">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 bg-gold-500/10 border border-gold-500/25 text-gold-300 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
-                  <Sparkles className="w-3 h-3 text-gold-400" />
+                <span className="inline-flex items-center gap-1.5 bg-gold-gradient text-obsidian-950 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider shadow-md">
+                  <Sparkles className="w-3 h-3 text-obsidian-950 fill-obsidian-950" />
                   QR In-Room Dining
                 </span>
-                <span className="inline-flex items-center gap-1 bg-green-950/40 border border-green-500/30 text-green-400 px-2 py-0.5 rounded-full text-[10px] font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="inline-flex items-center gap-1 bg-green-950/70 border border-green-500/40 text-green-400 px-2.5 py-0.5 rounded-full text-[10px] font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                   Kitchen Open
                 </span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight pt-1">
                 {hotel.name}
               </h1>
               {hotel.address && (
-                <p className="text-xs text-gray-400 flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-gold-400 shrink-0" />
+                <p className="text-xs text-yellow-100/90 font-medium flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-gold-300 shrink-0" />
                   <span className="truncate">{hotel.address}</span>
                 </p>
               )}
@@ -379,23 +379,23 @@ export default function MenuPage({
             {hotel.phone && (
               <a
                 href={`tel:${hotel.phone}`}
-                className="self-start sm:self-auto inline-flex items-center gap-1.5 bg-obsidian-900 hover:bg-obsidian-850 text-gold-300 border border-gold-500/20 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer shadow-sm"
+                className="self-start sm:self-auto inline-flex items-center gap-1.5 bg-obsidian-900 hover:bg-obsidian-850 text-gold-200 border border-gold-500/40 px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shadow-md"
               >
-                <Phone className="w-3.5 h-3.5 text-gold-400" />
+                <Phone className="w-3.5 h-3.5 text-gold-300" />
                 <span>Front Desk</span>
               </a>
             )}
           </div>
 
-          {/* Navigation Tab Switcher: Menu vs My Orders */}
-          <div className="grid grid-cols-2 bg-obsidian-900/90 p-1.5 rounded-2xl border border-gold-500/20 shadow-lg backdrop-blur-md">
+            {/* Navigation Tab Switcher: Menu vs My Orders */}
+          <div className="grid grid-cols-2 bg-obsidian-950/90 p-1.5 rounded-2xl border border-gold-500/40 shadow-2xl backdrop-blur-md">
             <button
               onClick={() => setActiveTab('menu')}
               className={cn(
-                "flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer",
+                "flex items-center justify-center gap-2 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm transition-all cursor-pointer",
                 activeTab === 'menu'
-                  ? "bg-gold-500 text-obsidian-950 shadow-md shadow-gold-500/15"
-                  : "text-gray-400 hover:text-white hover:bg-obsidian-800/50"
+                  ? "btn-gold-foil scale-[1.02]"
+                  : "text-champagne hover:text-white hover:bg-obsidian-800/60"
               )}
             >
               <UtensilsCrossed className="w-4 h-4" />
@@ -408,10 +408,10 @@ export default function MenuPage({
                 loadDeviceOrders()
               }}
               className={cn(
-                "flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer relative",
+                "flex items-center justify-center gap-2 py-2.5 rounded-xl font-extrabold text-xs sm:text-sm transition-all cursor-pointer relative",
                 activeTab === 'orders'
-                  ? "bg-gold-500 text-obsidian-950 shadow-md shadow-gold-500/15"
-                  : "text-gray-400 hover:text-white hover:bg-obsidian-800/50"
+                  ? "btn-gold-foil scale-[1.02]"
+                  : "text-champagne hover:text-white hover:bg-obsidian-800/60"
               )}
             >
               <Clock className="w-4 h-4" />
@@ -420,10 +420,10 @@ export default function MenuPage({
                 <span className={cn(
                   "px-2 py-0.5 rounded-full text-[11px] font-black ml-1 inline-flex items-center justify-center min-w-5 h-5 leading-none transition-all shadow-sm",
                   activeTab === 'orders'
-                    ? "bg-gold-600/30 text-obsidian-950 border border-obsidian-950/25"
+                    ? "bg-obsidian-950 text-gold-300 border border-gold-400"
                     : activeOrdersCount > 0
-                    ? "bg-gold-500 text-obsidian-950 font-extrabold animate-pulse"
-                    : "bg-obsidian-800 text-gold-200 border border-gold-500/20"
+                    ? "btn-gold-foil animate-pulse text-[10px]"
+                    : "bg-obsidian-800 text-gold-200 border border-gold-500/30"
                 )}>
                   {deviceOrders.length}
                 </span>
@@ -445,20 +445,20 @@ export default function MenuPage({
           >
             {/* Search Input */}
             <div className="relative group">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gray-500">
-                <Search className="w-4.5 h-4.5 group-focus-within:text-gold-400 transition-colors" />
+              <span className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-gold-300">
+                <Search className="w-4.5 h-4.5 group-focus-within:text-gold-200 transition-colors" />
               </span>
               <input
                 type="text"
                 placeholder="Search dishes, beverages, starters..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-obsidian-900 border border-gold-500/20 rounded-2xl pl-11 pr-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500/20 focus:border-gold-500 transition-all shadow-md"
+                className="w-full bg-obsidian-900/95 border border-gold-500/40 rounded-2xl pl-11 pr-4 py-3.5 text-sm text-white placeholder-gold-500/60 focus:outline-none focus:ring-2 focus:ring-gold-400/50 focus:border-gold-300 transition-all shadow-xl font-medium"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 hover:text-white"
+                  className="absolute inset-y-0 right-0 flex items-center pr-4 text-gold-300 hover:text-white"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -466,16 +466,16 @@ export default function MenuPage({
             </div>
 
             {/* Category horizontal scrolling bar */}
-            <div className="flex gap-2 overflow-x-auto scrollbar-hide py-1 border-b border-gold-500/15">
+            <div className="flex gap-2 overflow-x-auto scrollbar-hide py-1 border-b border-gold-500/30">
               {categories.map(cat => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
                   className={cn(
-                    "px-4 py-2 rounded-full text-xs font-bold shrink-0 transition-all duration-200 border cursor-pointer",
+                    "px-4 py-2 rounded-full text-xs font-black shrink-0 transition-all duration-200 border cursor-pointer",
                     selectedCategory === cat
-                      ? "bg-gold-500 text-obsidian-950 border-gold-500 shadow-md shadow-gold-500/10"
-                      : "bg-obsidian-900 text-gray-400 border-gold-500/10 hover:border-gold-500/40 hover:text-gold-200"
+                      ? "btn-gold-foil scale-[1.03]"
+                      : "bg-obsidian-900/90 text-gold-300 border-gold-500/30 hover:border-gold-400 hover:text-white"
                   )}
                 >
                   {cat}
@@ -485,11 +485,11 @@ export default function MenuPage({
 
             {/* Title & Items Counter */}
             <div className="flex items-center justify-between">
-              <h2 className="font-bold text-lg text-white flex items-center gap-2 tracking-tight">
-                <UtensilsCrossed className="w-4.5 h-4.5 text-gold-500" />
+              <h2 className="font-extrabold text-lg text-white flex items-center gap-2 tracking-tight">
+                <UtensilsCrossed className="w-4.5 h-4.5 text-gold-300" />
                 {selectedCategory === 'All' ? 'Culinary Selections' : selectedCategory}
               </h2>
-              <span className="text-xs text-gold-400/80 font-medium">
+              <span className="text-xs text-gold-300 font-bold bg-gold-500/15 border border-gold-500/35 px-2.5 py-1 rounded-lg">
                 {filteredItems.length} {filteredItems.length === 1 ? 'item' : 'items'} available
               </span>
             </div>
@@ -501,13 +501,13 @@ export default function MenuPage({
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="py-14 text-center bg-obsidian-900/60 border border-gold-500/15 rounded-3xl p-6"
+                    className="py-14 text-center bg-obsidian-900/90 border border-gold-500/30 rounded-3xl p-6 shadow-2xl"
                   >
-                    <div className="w-14 h-14 bg-obsidian-950 rounded-full flex items-center justify-center mx-auto mb-3 border border-gold-500/15">
-                      <Search className="w-6 h-6 text-gold-500/50" />
+                    <div className="w-14 h-14 bg-obsidian-950 rounded-full flex items-center justify-center mx-auto mb-3 border border-gold-500/35">
+                      <Search className="w-6 h-6 text-gold-300" />
                     </div>
-                    <p className="text-white font-bold">No dishes found</p>
-                    <p className="text-xs text-gray-400 mt-1">Try modifying your search query or category filter.</p>
+                    <p className="text-white font-bold text-base">No dishes found</p>
+                    <p className="text-xs text-champagne mt-1">Try modifying your search query or category filter.</p>
                   </motion.div>
                 ) : (
                   filteredItems.map((item, index) => {
@@ -518,10 +518,10 @@ export default function MenuPage({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.03 }}
                         key={item.id}
-                        className="p-3.5 sm:p-5 bg-obsidian-900 border border-gold-500/15 rounded-3xl flex justify-between items-center shadow-md hover:border-gold-500/35 transition-all gap-3 sm:gap-4"
+                        className="p-3.5 sm:p-5 bg-obsidian-900/95 border border-gold-500/30 rounded-3xl flex justify-between items-center shadow-xl hover:border-gold-400/60 transition-all gap-3 sm:gap-4 backdrop-blur-md"
                       >
                         {/* Product Image Thumbnail */}
-                        <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shrink-0 border border-gold-500/20 shadow-md bg-obsidian-950">
+                        <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden shrink-0 border border-gold-500/35 shadow-md bg-obsidian-950">
                           <img
                             src={getItemImageUrl(item)}
                             alt={item.name}
@@ -537,38 +537,38 @@ export default function MenuPage({
                         <div className="space-y-1 flex-1 min-w-0">
                           <div className="flex items-center gap-1.5 flex-wrap">
                             {/* Veg Icon Badge */}
-                            <div className="w-3.5 h-3.5 border border-green-500 flex items-center justify-center rounded-[3px] p-[1px] bg-green-950/30 shrink-0">
-                              <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                            <div className="w-3.5 h-3.5 border border-green-400 flex items-center justify-center rounded-[3px] p-[1px] bg-green-950/60 shrink-0">
+                              <div className="w-1.5 h-1.5 bg-green-400 rounded-full" />
                             </div>
                             {item.category && (
-                              <span className="text-[9px] text-gold-400 bg-gold-500/10 border border-gold-500/20 px-2 py-0.5 rounded-md font-bold uppercase tracking-wider truncate max-w-[120px]">
+                              <span className="text-[9px] text-gold-200 bg-gold-500/20 border border-gold-500/35 px-2 py-0.5 rounded-md font-extrabold uppercase tracking-wider truncate max-w-[120px]">
                                 {item.category}
                               </span>
                             )}
                           </div>
-                          <h3 className="font-bold text-white text-sm sm:text-base leading-snug tracking-tight line-clamp-1">{item.name}</h3>
+                          <h3 className="font-extrabold text-white text-sm sm:text-base leading-snug tracking-tight line-clamp-1">{item.name}</h3>
                           {item.description && (
-                            <p className="text-gray-400 text-xs font-normal leading-relaxed line-clamp-2">{item.description}</p>
+                            <p className="text-gray-200 text-xs font-normal leading-relaxed line-clamp-2">{item.description}</p>
                           )}
-                          <p className="font-extrabold text-gold-400 text-sm sm:text-base pt-0.5">₹{item.price}</p>
+                          <p className="font-black text-gold-300 text-sm sm:text-base pt-0.5 drop-shadow-md">₹{item.price}</p>
                         </div>
 
                         {/* Add / Quantity Control */}
                         <div className="flex flex-col items-center justify-center shrink-0">
                           {cartItem ? (
-                            <div className="flex items-center bg-obsidian-950 border border-gold-500/30 rounded-2xl shadow-inner overflow-hidden w-20 sm:w-24 h-9 sm:h-10">
+                            <div className="flex items-center bg-obsidian-950 border border-gold-500/40 rounded-2xl shadow-inner overflow-hidden w-20 sm:w-24 h-9 sm:h-10">
                               <button
                                 onClick={() => removeFromCart(item.id)}
-                                className="flex-1 h-full flex items-center justify-center text-gold-400 hover:bg-gold-500/10 transition cursor-pointer"
+                                className="flex-1 h-full flex items-center justify-center text-gold-300 hover:bg-gold-500/25 transition cursor-pointer"
                               >
                                 <Minus className="w-3.5 h-3.5" />
                               </button>
-                              <span className="font-extrabold text-gold-300 text-xs sm:text-sm">
+                              <span className="font-black text-gold-200 text-xs sm:text-sm">
                                 {cartItem.quantity}
                               </span>
                               <button
                                 onClick={() => addToCart(item)}
-                                className="flex-1 h-full flex items-center justify-center text-gold-400 hover:bg-gold-500/10 transition cursor-pointer"
+                                className="flex-1 h-full flex items-center justify-center text-gold-300 hover:bg-gold-500/25 transition cursor-pointer"
                               >
                                 <Plus className="w-3.5 h-3.5" />
                               </button>
@@ -576,7 +576,7 @@ export default function MenuPage({
                           ) : (
                             <button
                               onClick={() => addToCart(item)}
-                              className="bg-gold-500/10 hover:bg-gold-500 hover:text-obsidian-950 border border-gold-500/40 text-gold-400 font-bold px-4 sm:px-6 py-2 rounded-2xl text-xs transition-all active:scale-95 cursor-pointer w-20 sm:w-24 h-9 sm:h-10 shadow-sm flex items-center justify-center"
+                              className="btn-gold-foil font-black px-4 sm:px-6 py-2 rounded-2xl text-xs transition-all active:scale-95 cursor-pointer w-20 sm:w-24 h-9 sm:h-10 shadow-lg flex items-center justify-center tracking-wider"
                             >
                               ADD
                             </button>
@@ -749,18 +749,18 @@ export default function MenuPage({
             <div className="max-w-2xl mx-auto">
               <button
                 onClick={() => setCartExpanded(true)}
-                className="w-full bg-gold-500 hover:bg-gold-400 text-obsidian-950 rounded-2xl shadow-xl shadow-gold-500/15 p-4 flex items-center justify-between active:scale-[0.99] transition-all cursor-pointer border border-gold-300"
+                className="w-full btn-gold-foil rounded-2xl shadow-2xl p-4 flex items-center justify-between active:scale-[0.99] transition-all cursor-pointer"
               >
                 <div className="flex flex-col text-left">
-                  <span className="text-[10px] font-bold text-obsidian-950/80 uppercase tracking-widest">
+                  <span className="text-[10px] font-black text-obsidian-950 uppercase tracking-widest">
                     {getCartTotalQuantity()} {getCartTotalQuantity() === 1 ? 'Plate' : 'Plates'} Selected
                   </span>
-                  <span className="font-extrabold text-lg text-obsidian-950">
+                  <span className="font-black text-xl text-obsidian-950">
                     ₹{getCartTotalPrice()}
                   </span>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs font-extrabold tracking-wide uppercase text-obsidian-950">
-                  Review Order Bag <ShoppingBag className="w-4 h-4 text-obsidian-950" />
+                <div className="flex items-center gap-2 text-xs font-black tracking-wider uppercase text-obsidian-950 bg-obsidian-950/15 px-3 py-1.5 rounded-xl border border-obsidian-950/20">
+                  Review Order Bag <ShoppingBag className="w-4 h-4 text-obsidian-950 fill-obsidian-950" />
                 </div>
               </button>
             </div>
@@ -777,63 +777,63 @@ export default function MenuPage({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setCartExpanded(false)}
-              className="fixed inset-0 bg-obsidian-950/80 backdrop-blur-sm z-50"
+              className="fixed inset-0 bg-obsidian-950/85 backdrop-blur-md z-50"
             />
             <motion.div
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-              className="fixed bottom-0 left-0 right-0 z-50 bg-obsidian-900 border-t border-gold-500/30 rounded-t-[32px] shadow-2xl overflow-hidden max-h-[85vh] flex flex-col"
+              className="fixed bottom-0 left-0 right-0 z-50 bg-obsidian-900 border-t border-gold-500/40 rounded-t-[32px] shadow-2xl overflow-hidden max-h-[85vh] flex flex-col"
             >
-              <div className="max-w-2xl mx-auto w-full h-full flex flex-col text-cream-50">
+              <div className="max-w-2xl mx-auto w-full h-full flex flex-col text-white">
                 {/* Drawer Header */}
-                <div className="px-6 pt-5 pb-3.5 border-b border-gold-500/15 flex items-center justify-between bg-obsidian-900">
-                  <h3 className="font-bold text-lg text-white tracking-tight flex items-center gap-2">
-                    <ShoppingBag className="w-4.5 h-4.5 text-gold-400" />
+                <div className="px-6 pt-5 pb-3.5 border-b border-gold-500/25 flex items-center justify-between bg-obsidian-900">
+                  <h3 className="font-extrabold text-lg text-white tracking-tight flex items-center gap-2">
+                    <ShoppingBag className="w-4.5 h-4.5 text-gold-300" />
                     Your Order Bag
                   </h3>
                   <button
                     onClick={() => setCartExpanded(false)}
-                    className="p-2 bg-obsidian-950 hover:bg-obsidian-800 text-gray-400 border border-gold-500/20 rounded-full transition-colors cursor-pointer"
+                    className="p-2 bg-obsidian-950 hover:bg-obsidian-800 text-gold-300 border border-gold-500/30 rounded-full transition-colors cursor-pointer"
                   >
-                    <X className="w-4 h-4 text-gold-400" />
+                    <X className="w-4 h-4 text-gold-300" />
                   </button>
                 </div>
 
                 {/* Items List */}
-                <div className="px-6 py-2 overflow-y-auto max-h-[36vh] space-y-3 divide-y divide-gold-500/5">
+                <div className="px-6 py-2 overflow-y-auto max-h-[36vh] space-y-3 divide-y divide-gold-500/10">
                   {Object.values(cart).map((c, idx) => (
                     <div key={c.item.id} className={cn("flex justify-between items-center py-3", idx === 0 && "pt-1")}>
                       <div className="flex items-center gap-3">
-                        <div className="w-3.5 h-3.5 border border-green-500 flex items-center justify-center rounded-[3px] shrink-0 p-[1px] bg-green-950/30">
-                           <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                        <div className="w-3.5 h-3.5 border border-green-400 flex items-center justify-center rounded-[3px] shrink-0 p-[1px] bg-green-950/50">
+                           <div className="w-1.5 h-1.5 bg-green-400 rounded-full" />
                         </div>
                         <div>
-                          <p className="text-white font-semibold text-sm leading-snug">{c.item.name}</p>
-                          <p className="text-gold-400 text-xs font-bold mt-0.5">₹{c.item.price}</p>
+                          <p className="text-white font-extrabold text-sm leading-snug">{c.item.name}</p>
+                          <p className="text-gold-300 text-xs font-bold mt-0.5">₹{c.item.price}</p>
                         </div>
                       </div>
                       
                       <div className="flex items-center gap-4">
-                        <div className="flex items-center bg-obsidian-950 border border-gold-500/20 rounded-xl shadow-sm h-8 w-[76px]">
+                        <div className="flex items-center bg-obsidian-950 border border-gold-500/30 rounded-xl shadow-sm h-8 w-[76px]">
                            <button
                              onClick={() => removeFromCart(c.item.id)}
-                             className="flex-1 h-full flex items-center justify-center text-gold-400 hover:bg-gold-500/10 cursor-pointer"
+                             className="flex-1 h-full flex items-center justify-center text-gold-300 hover:bg-gold-500/20 cursor-pointer"
                            >
                              <Minus className="w-3 h-3" />
                            </button>
-                           <span className="font-bold text-gold-300 text-xs">
+                           <span className="font-black text-gold-200 text-xs">
                              {c.quantity}
                            </span>
                            <button
                              onClick={() => addToCart(c.item)}
-                             className="flex-1 h-full flex items-center justify-center text-gold-400 hover:bg-gold-500/10 cursor-pointer"
+                             className="flex-1 h-full flex items-center justify-center text-gold-300 hover:bg-gold-500/20 cursor-pointer"
                            >
                              <Plus className="w-3 h-3" />
                            </button>
                         </div>
-                        <span className="font-bold text-gold-400 w-14 text-right text-sm">
+                        <span className="font-black text-gold-300 w-14 text-right text-sm">
                           ₹{c.item.price * c.quantity}
                         </span>
                       </div>
@@ -841,7 +841,7 @@ export default function MenuPage({
                   ))}
                   
                   {Object.keys(cart).length === 0 && (
-                    <div className="py-12 text-center text-gray-400 font-medium">
+                    <div className="py-12 text-center text-champagne font-semibold">
                       Your order bag is currently empty.
                     </div>
                   )}
@@ -849,24 +849,24 @@ export default function MenuPage({
 
                 {/* Subtotal */}
                 {Object.keys(cart).length > 0 && (
-                  <div className="px-6 py-3.5 bg-obsidian-950 border-t border-b border-gold-500/15">
-                    <div className="flex justify-between text-xs text-gray-400 mb-1.5">
+                  <div className="px-6 py-3.5 bg-obsidian-950 border-t border-b border-gold-500/20">
+                    <div className="flex justify-between text-xs text-champagne mb-1.5 font-medium">
                       <span>Items Subtotal</span>
-                      <span className="font-bold text-white">₹{getCartTotalPrice()}</span>
+                      <span className="font-extrabold text-white">₹{getCartTotalPrice()}</span>
                     </div>
-                    <div className="flex justify-between text-xs text-gray-400 mb-2 border-b border-gold-500/10 pb-2">
+                    <div className="flex justify-between text-xs text-champagne mb-2 border-b border-gold-500/15 pb-2 font-medium">
                       <span>Service & Delivery</span>
-                      <span className="text-green-400 font-bold text-[10px] uppercase bg-green-950/30 px-2 py-0.5 rounded border border-green-500/30">Complimentary</span>
+                      <span className="text-green-400 font-extrabold text-[10px] uppercase bg-green-950/50 px-2 py-0.5 rounded border border-green-500/40">Complimentary</span>
                     </div>
-                    <div className="flex justify-between text-sm font-bold text-white">
+                    <div className="flex justify-between text-sm font-extrabold text-white">
                       <span>Grand Total</span>
-                      <span className="font-extrabold text-gold-400 text-base">₹{getCartTotalPrice()}</span>
+                      <span className="font-black text-gold-300 text-base">₹{getCartTotalPrice()}</span>
                     </div>
                   </div>
                 )}
 
                 {/* Room Number & Confirm Order */}
-                <div className="p-4 bg-obsidian-900 border-t border-gold-500/15">
+                <div className="p-4 bg-obsidian-900 border-t border-gold-500/25">
                   <form onSubmit={handlePlaceOrder} className="space-y-3.5">
                     <div>
                       <input
@@ -875,24 +875,24 @@ export default function MenuPage({
                         placeholder="Enter Room / Suite Number (e.g. 302)"
                         value={roomNo}
                         onChange={(e) => setRoomNo(e.target.value)}
-                        className="w-full bg-obsidian-950 border border-gold-500/25 rounded-2xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gold-500/20 focus:border-gold-500 transition-all font-semibold"
+                        className="w-full bg-obsidian-950 border border-gold-500/35 rounded-2xl px-4 py-3.5 text-sm text-white placeholder-champagne/60 focus:outline-none focus:ring-2 focus:ring-gold-400/50 focus:border-gold-300 transition-all font-bold"
                       />
                     </div>
                     
                     <button
                       type="submit"
                       disabled={isOrdering || Object.keys(cart).length === 0}
-                      className="w-full bg-gold-500 hover:bg-gold-400 text-obsidian-950 font-bold py-4 px-6 rounded-2xl shadow-xl shadow-gold-500/15 transition active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer flex items-center justify-between border border-gold-300"
+                      className="w-full btn-gold-foil font-black py-4 px-6 rounded-2xl shadow-2xl transition active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer flex items-center justify-between"
                     >
                       {isOrdering ? (
                         <div className="flex items-center justify-center w-full gap-2">
                           <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: 'linear' }} className="w-5 h-5 border-2 border-obsidian-950 border-t-transparent rounded-full" />
-                          <span className="text-xs uppercase tracking-wider font-bold">Transmitting Order...</span>
+                          <span className="text-xs uppercase tracking-wider font-black">Transmitting Order...</span>
                         </div>
                       ) : (
                         <>
-                          <span className="text-xs uppercase tracking-widest font-bold">Confirm & Send Order</span>
-                          <span className="font-bold bg-gold-600 px-3 py-1 rounded-lg text-sm text-obsidian-950">
+                          <span className="text-xs uppercase tracking-widest font-black">Confirm & Send Order</span>
+                          <span className="font-black bg-obsidian-950/20 px-3 py-1 rounded-lg text-sm text-obsidian-950">
                             ₹{getCartTotalPrice()}
                           </span>
                         </>

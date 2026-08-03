@@ -30,10 +30,26 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   const { hotel_id, name, price, category, description, image_url } = await req.json()
 
-  const { data, error } = await supabase
+  let insertPayload: Record<string, unknown> = { hotel_id, name, price, category, description, available: true }
+  if (image_url) {
+    insertPayload.image_url = image_url
+  }
+
+  let { data, error } = await supabase
     .from('menu_items')
-    .insert({ hotel_id, name, price, category, description, image_url, available: true })
+    .insert(insertPayload)
     .select()
+
+  // If image_url column doesn't exist in Supabase schema, fallback without image_url
+  if (error && (error.message?.includes('image_url') || error.code === 'PGRST204')) {
+    delete insertPayload.image_url
+    const retry = await supabase
+      .from('menu_items')
+      .insert(insertPayload)
+      .select()
+    data = retry.data
+    error = retry.error
+  }
 
   if (error) return Response.json({ error: error.message }, { status: 500 })
   if (!data || data.length === 0) return Response.json({ error: 'Failed to insert item' }, { status: 500 })
@@ -45,11 +61,28 @@ export async function POST(req: Request) {
 export async function PUT(req: Request) {
   const { id, name, price, category, description, image_url, available } = await req.json()
 
-  const { data, error } = await supabase
+  let updatePayload: Record<string, unknown> = { name, price, category, description, available }
+  if (image_url !== undefined) {
+    updatePayload.image_url = image_url
+  }
+
+  let { data, error } = await supabase
     .from('menu_items')
-    .update({ name, price, category, description, image_url, available })
+    .update(updatePayload)
     .eq('id', id)
     .select()
+
+  // If image_url column doesn't exist in Supabase schema, fallback without image_url
+  if (error && (error.message?.includes('image_url') || error.code === 'PGRST204')) {
+    delete updatePayload.image_url
+    const retry = await supabase
+      .from('menu_items')
+      .update(updatePayload)
+      .eq('id', id)
+      .select()
+    data = retry.data
+    error = retry.error
+  }
 
   if (error) return Response.json({ error: error.message }, { status: 500 })
   if (!data || data.length === 0) return Response.json({ error: 'Item not found or no changes made' }, { status: 404 })

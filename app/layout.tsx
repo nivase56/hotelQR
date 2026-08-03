@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Outfit } from "next/font/google";
 import "./globals.css";
 
@@ -17,6 +17,21 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "GuestQR | Premium Digital Menu Portal",
   description: "Create and view beautiful contactless menus for luxury hotels and restaurants.",
+  icons: {
+    icon: [
+      { url: '/icon.png?v=3', type: 'image/png' },
+      { url: '/favicon.ico?v=3' },
+    ],
+    shortcut: ['/icon.png?v=3'],
+    apple: ['/icon.png?v=3'],
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
