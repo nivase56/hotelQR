@@ -158,12 +158,19 @@ export default function Home() {
           <p className="text-yellow-100/90 leading-relaxed font-normal text-base">
             Empower your hotel or restaurant with seamless, elegant contactless QR code menus. Control orders, update listings, and delight your guests in real-time.
           </p>
-          <div className="pt-4 flex items-center gap-4 text-xs font-bold text-gold-300">
-            <span>✓ Instantly Generated QR</span>
-            <span>•</span>
-            <span>✓ Live Order Feed</span>
-            <span>•</span>
-            <span>✓ Elegant Custom Styling</span>
+          <div className="pt-4 flex flex-wrap items-center gap-2.5 text-xs font-extrabold text-gold-300">
+            <span className="bg-obsidian-900/90 border border-gold-500/30 px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm">
+              <CheckCircle2 className="w-3.5 h-3.5 text-gold-300 shrink-0" />
+              Instantly Generated QR
+            </span>
+            <span className="bg-obsidian-900/90 border border-gold-500/30 px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm">
+              <CheckCircle2 className="w-3.5 h-3.5 text-gold-300 shrink-0" />
+              Live Order Feed
+            </span>
+            <span className="bg-obsidian-900/90 border border-gold-500/30 px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow-sm">
+              <CheckCircle2 className="w-3.5 h-3.5 text-gold-300 shrink-0" />
+              Elegant Custom Styling
+            </span>
           </div>
         </div>
         
