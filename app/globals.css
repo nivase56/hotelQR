@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold-50: #F7E7C4;
-  --color-gold-100: #E6C875;
-  --color-gold-200: #D4AF37;
-  --color-gold-300: #C59B27;
-  --color-gold-400: #B38728;
-  --color-gold-500: #9A7414;
-  --color-gold-600: #8F6B00;
-  --color-gold-700: #6B5000;
+  --color-gold-50: #FFF6E0;
+  --color-gold-100: #FFE199;
+  --color-gold-200: #FFC952;
+  --color-gold-300: #FFAD0E;
+  --color-gold-400: #E59800;
+  --color-gold-500: #C28000;
+  --color-gold-600: #9E6800;
+  --color-gold-700: #7A5000;
   
   --color-obsidian-950: #050505;
   --color-obsidian-900: #0d0d0d;
@@ -38,94 +38,52 @@ body {
   overflow-x: hidden;
 }
 
-/* Vibrant Radiant 24K Liquid Gold Metallic Gradient */
+/* User Specified Color #ffad0e Solid Backgrounds */
 .bg-gold-gradient {
-  background: linear-gradient(
-    135deg,
-    #8f6b00 0%,
-    #c99800 15%,
-    #f7df72 30%,
-    #fff2a8 40%,
-    #e4b400 55%,
-    #b98500 75%,
-    #f6dc63 100%
-  ) !important;
-  box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.7),
-    inset 0 -1.5px 2px rgba(0, 0, 0, 0.4),
-    0 6px 20px -2px rgba(228, 180, 0, 0.45) !important;
+  background: #ffad0e !important;
+  color: #050505 !important;
 }
 
-/* Luminous 24K Polished Metallic Gold Foil Button Style */
+/* User Specified Color #ffad0e Solid Button Style */
 .btn-gold-foil {
-  background: linear-gradient(
-    135deg,
-    #8f6b00 0%,
-    #c99800 15%,
-    #f7df72 30%,
-    #fff2a8 40%,
-    #e4b400 55%,
-    #b98500 75%,
-    #f6dc63 100%
-  ) !important;
+  background: #ffad0e !important;
   color: #050505 !important;
   font-weight: 800 !important;
-  border: 1px solid #fff2a8 !important;
-  box-shadow: 
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.75),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.35),
-    0 6px 22px rgba(228, 180, 0, 0.4) !important;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(255, 173, 14, 0.35) !important;
+  transition: all 0.2s ease;
 }
 
 .btn-gold-foil:hover {
-  transform: translateY(-1px);
-  filter: contrast(1.06) saturate(1.08);
-  box-shadow: 
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.9),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.3),
-    0 10px 28px rgba(228, 180, 0, 0.55) !important;
+  background: #ffbc38 !important;
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(255, 173, 14, 0.5) !important;
 }
 
-/* Radiant Gold Leaf Metallic Text */
+/* Solid #ffad0e Text & Borders */
 .text-gold-gradient, .text-gold-foil {
-  background: linear-gradient(
-    135deg,
-    #fff2a8 0%,
-    #f7df72 20%,
-    #e4b400 50%,
-    #c99800 80%,
-    #f6dc63 100%
-  ) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  color: #ffad0e !important;
 }
 
 .border-gold-gradient {
-  border-image: linear-gradient(
-    135deg,
-    #8f6b00 0%,
-    #c99800 25%,
-    #fff2a8 50%,
-    #e4b400 75%,
-    #f6dc63 100%
-  ) 1;
+  border-color: #ffad0e !important;
 }
 
-/* High-Contrast Luxury Stardust Black Background with Refined Warm Gold Dots */
+/* High-Contrast Luxury Stardust Black Background with Refined #ffad0e Dots */
 .bg-yellow-dots {
   background-color: #060606;
-  background-image: radial-gradient(rgba(212, 175, 55, 0.20) 1.2px, transparent 1.2px);
+  background-image: radial-gradient(rgba(255, 173, 14, 0.22) 1.2px, transparent 1.2px);
   background-size: 22px 22px;
 }
 
 .bg-luxury-pattern {
   background-color: #050505;
   background-image: 
-    radial-gradient(rgba(212, 175, 55, 0.22) 1.4px, transparent 1.4px),
-    radial-gradient(rgba(180, 130, 20, 0.12) 1.2px, transparent 1.2px);
+    radial-gradient(rgba(255, 173, 14, 0.24) 1.4px, transparent 1.4px),
+    radial-gradient(rgba(229, 152, 0, 0.14) 1.2px, transparent 1.2px);
   background-size: 26px 26px;
   background-position: 0 0, 13px 13px;
 }
@@ -133,23 +91,23 @@ body {
 .bg-dark-pattern {
   background-color: #060606;
   background-image: 
-    radial-gradient(rgba(212, 175, 55, 0.18) 1.2px, transparent 1.2px);
+    radial-gradient(rgba(255, 173, 14, 0.20) 1.2px, transparent 1.2px);
   background-size: 22px 22px;
 }
 
 /* Warm Deep Gold Labels & Legible Typography */
 .text-champagne {
-  color: #E6C875 !important;
+  color: #ffad0e !important;
 }
 
 .text-gold-bright {
-  color: #D4AF37 !important;
+  color: #ffad0e !important;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .text-gold-glow {
-  color: #C59B27 !important;
-  text-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+  color: #ffad0e !important;
+  text-shadow: 0 0 12px rgba(255, 173, 14, 0.4);
 }
 
 /* Glassmorphism utility card with golden metallic border */
