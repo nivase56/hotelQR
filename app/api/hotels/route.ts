@@ -1,6 +1,8 @@
 // app/api/hotels/route.ts
 import { supabase } from '@/lib/supabase'
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(req: Request) {
   const { name, phone, address, username, password } = await req.json()
 

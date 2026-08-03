@@ -1,6 +1,8 @@
 import { supabase } from '@/lib/supabase'
 import { cookies } from 'next/headers'
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(req: Request) {
   const { username, password } = await req.json()
 

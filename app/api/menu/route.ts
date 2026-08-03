@@ -1,6 +1,8 @@
 // app/api/menu/route.ts
 import { supabase } from '@/lib/supabase'
 
+export const dynamic = 'force-dynamic'
+
 // GET: Guest or Admin menu fetch
 // /api/menu?hotel_id=xxx&admin=true
 export async function GET(req: Request) {

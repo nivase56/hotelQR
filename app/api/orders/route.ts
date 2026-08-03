@@ -1,6 +1,8 @@
 // app/api/orders/route.ts
 import { supabase } from '@/lib/supabase'
 
+export const dynamic = 'force-dynamic'
+
 export async function POST(req: Request) {
   const { hotel_id, room_no, items } = await req.json()
 
