@@ -38,57 +38,64 @@ body {
   overflow-x: hidden;
 }
 
-/* Deep Metallic Gold Gradient (No Electric Yellow) */
+/* Vibrant Radiant 24K Liquid Gold Metallic Gradient */
 .bg-gold-gradient {
   background: linear-gradient(
     135deg,
     #8f6b00 0%,
-    #b38728 25%,
-    #d4af37 50%,
-    #c59b27 75%,
-    #8f6b00 100%
+    #c99800 15%,
+    #f7df72 30%,
+    #fff2a8 40%,
+    #e4b400 55%,
+    #b98500 75%,
+    #f6dc63 100%
   ) !important;
   box-shadow: 
-    inset 0 1px 1px rgba(247, 231, 196, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.7),
     inset 0 -1.5px 2px rgba(0, 0, 0, 0.4),
-    0 4px 18px -2px rgba(180, 130, 20, 0.35) !important;
+    0 6px 20px -2px rgba(228, 180, 0, 0.45) !important;
 }
 
-/* Luxury 24K Polished Metallic Gold Foil Button Style */
+/* Luminous 24K Polished Metallic Gold Foil Button Style */
 .btn-gold-foil {
   background: linear-gradient(
     135deg,
-    #9a7414 0%,
-    #d4af37 35%,
-    #c59b27 65%,
-    #8f6b00 100%
+    #8f6b00 0%,
+    #c99800 15%,
+    #f7df72 30%,
+    #fff2a8 40%,
+    #e4b400 55%,
+    #b98500 75%,
+    #f6dc63 100%
   ) !important;
-  color: #060606 !important;
+  color: #050505 !important;
   font-weight: 800 !important;
-  border: 1px solid #d4af37 !important;
+  border: 1px solid #fff2a8 !important;
   box-shadow: 
-    inset 0 1px 1.5px rgba(247, 231, 196, 0.45),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.4),
-    0 6px 20px rgba(180, 130, 20, 0.35) !important;
-  transition: all 0.2s ease;
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.75),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.35),
+    0 6px 22px rgba(228, 180, 0, 0.4) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-gold-foil:hover {
-  filter: contrast(1.05) saturate(1.05);
+  transform: translateY(-1px);
+  filter: contrast(1.06) saturate(1.08);
   box-shadow: 
-    inset 0 1px 1.5px rgba(247, 231, 196, 0.55),
-    inset 0 -2px 3px rgba(0, 0, 0, 0.35),
-    0 8px 24px rgba(180, 130, 20, 0.45) !important;
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.3),
+    0 10px 28px rgba(228, 180, 0, 0.55) !important;
 }
 
-/* Warm Metallic Gold Leaf Text */
+/* Radiant Gold Leaf Metallic Text */
 .text-gold-gradient, .text-gold-foil {
   background: linear-gradient(
     135deg,
-    #e6c875 0%,
-    #d4af37 40%,
-    #b38728 75%,
-    #d4af37 100%
+    #fff2a8 0%,
+    #f7df72 20%,
+    #e4b400 50%,
+    #c99800 80%,
+    #f6dc63 100%
   ) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -100,9 +107,10 @@ body {
   border-image: linear-gradient(
     135deg,
     #8f6b00 0%,
-    #d4af37 40%,
-    #c59b27 75%,
-    #8f6b00 100%
+    #c99800 25%,
+    #fff2a8 50%,
+    #e4b400 75%,
+    #f6dc63 100%
   ) 1;
 }
 
